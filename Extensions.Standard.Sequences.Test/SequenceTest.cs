@@ -263,5 +263,42 @@ namespace Extensions.Standard.Sequences.Test
             var tested = new Sequence(0, 124, 1);
             Assert.True(tested.Contains(number));
         }
+        [Fact]
+        public void IsOverlappingRetuirnsTrueForOverlappingSequences()
+        {
+            var sequence1 = new Sequence(0, 124, 1);
+            var sequence2 = new Sequence(-100, 129, 1);
+            Assert.True(sequence1.IsOverlapping(sequence2));
+        }
+        [Fact]
+        public void IsOverlappingRetuirnsTrueForOverlappingSequences2()
+        {
+            var sequence1 = new Sequence(0, 124, 1);
+            var sequence2 = new Sequence(-10, 129, 1);
+            Assert.True(sequence1.IsOverlapping(sequence2));
+        }
+        [Fact]
+        public void IsOverlappingRetuirnsTrueForOverlappingSequences3()
+        {
+            var sequence1 = new Sequence(0, 124, 1);
+            var sequence2 = new Sequence(-10, 10, 1);
+            Assert.True(sequence1.IsOverlapping(sequence2));
+        }
+        [Fact]
+        public void IsOverlappingRetuirnsTrueForOverlappingSequences4()
+        {
+            var sequence1 = new Sequence(0, 124, 1);
+            var sequence2 = new Sequence(10, 10, 1);
+            Assert.True(sequence1.IsOverlapping(sequence2));
+        }
+        [Fact]
+        public void GetIntersectionReturnsIntersection()
+        {
+            var sequence1 = new Sequence(0, 124, 1);
+            var sequence2 = new Sequence(1, 15, 1);
+            var received = sequence1.GetIntersection(sequence2);
+            Assert.Equal(15, received.Max);
+            Assert.Equal(1, received.Min);
+        }
     }
 }

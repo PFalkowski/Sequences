@@ -49,16 +49,25 @@ namespace Extensions.Standard.Sequences
         {
             return x <= Max && x >= Min;
         }
+
         public bool Contains(Sequence x)
         {
             return Contains(x.Min) && Contains(x.Max);
         }
+
         public bool IsOverlapping(Sequence x)
         {
             if (IsWellFormed && x.IsWellFormed)
                 return Min <= x.Max && x.Min <= Max;
             else
                 return Contains(x.Min) || Contains(x.Max) || x.Contains(Min) || x.Contains(Max);
+        }
+
+        public Sequence GetIntersection(Sequence other)
+        {
+            var min = Math.Max(this.Min, other.Min);
+            var max = Math.Min(this.Max, other.Max);
+            return new Sequence(min, max, Step);
         }
 
         private static bool IsSequencePossible(double min, double max, double step, double precision)

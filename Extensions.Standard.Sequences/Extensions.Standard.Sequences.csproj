@@ -6,7 +6,7 @@
     <Authors>Piotr Falkowski</Authors>
     <Copyright>Piotr Falkowski © 2017</Copyright>
     <Company>Piotr Falkowski</Company>
-    <Description>Sequence class, that given min, max and step can calculate, without enumerating, such basic descriptives as sum, length, Variance, Standard Deviation etc. Also, extension methods to generate sequences in GetSequence class.</Description>
+    <Description>The package is intended to help generate various sequences, random and with rules. Provided is Sequence class, that given min, max and step can calculate, without enumerating, such basic descriptives as sum, length, Variance, Standard Deviation etc. or enumerate lazily all elements. Also, extension methods to generate random sequences can be found in GetSequence class.</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/PFalkowski/Sequences</RepositoryUrl>
     <PackageIconUrl />
@@ -14,6 +14,8 @@
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageTags>sequence, statistics, netCore, netStandard, range, unittest</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>Add Sequence.GetIntersection()</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
