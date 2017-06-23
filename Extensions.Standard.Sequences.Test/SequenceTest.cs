@@ -18,15 +18,6 @@ namespace Extensions.Standard.Sequences.Test
             Assert.Equal(max, tested.Max);
             Assert.Equal(step, tested.Step);
         }
-        [Fact]
-        public void TestCtorThrowsWhenSeqNotConvergent()
-        {
-            var min = 0.0;
-            var max = 10.02;
-            var step = 1.0;
-
-            Assert.Throws<ArgumentException>(() => new Sequence(min, max, step));
-        }
 
         [Fact]
         public void TestGetFullSequence()
@@ -161,10 +152,10 @@ namespace Extensions.Standard.Sequences.Test
             var max = 10000000;
             var step = 0.1;
             var tested = new Sequence(min, max, step);
-            var expected = 50000005000000.0;
+            var expected = 500000005000000.0;
             var actual = tested.Sum;
 
-            Assert.Equal(Math.Round(expected, 5), Math.Round(actual, 5));
+            Assert.Equal(Math.Round(expected), Math.Round(actual));
         }
         [Fact]
         public void TestAverage()
@@ -240,14 +231,6 @@ namespace Extensions.Standard.Sequences.Test
             var min = 4;
             var max = 3;
             var step = 1.0;
-            Assert.Throws<ArgumentException>(() => new Sequence(min, max, step));
-        }
-        [Fact]
-        public void TestIsWellFormed3()
-        {
-            var min = 3;
-            var max = 4;
-            var step = 0.7;
             Assert.Throws<ArgumentException>(() => new Sequence(min, max, step));
         }
         [Fact]

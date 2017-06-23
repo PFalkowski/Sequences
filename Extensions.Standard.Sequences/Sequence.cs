@@ -13,7 +13,7 @@ namespace Extensions.Standard.Sequences
             Min = min;
             Max = max;
             Step = step;
-            if (!IsSequencePossible(min, max, step) || !IsWellFormed) throw new ArgumentException(nameof(max));
+            if (!IsWellFormed) throw new ArgumentException(nameof(max));
         }
 
         public double Min { get; }
@@ -61,10 +61,9 @@ namespace Extensions.Standard.Sequences
                 return Contains(x.Min) || Contains(x.Max) || x.Contains(Min) || x.Contains(Max);
         }
 
-        private static bool IsSequencePossible(double min, double max, double step)
+        private static bool IsSequencePossible(double min, double max, double step, double precision)
         {
             var rem = (max - min) % step;
-            const double precision = 0.000001;
             return Math.Abs(rem) <= precision;
         }
     }
