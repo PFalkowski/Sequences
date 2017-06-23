@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageId>Sequence</PackageId>
+    <Authors>Piotr Falkowski</Authors>
+    <Copyright>Piotr Falkowski © 2017</Copyright>
+    <Company>Piotr Falkowski</Company>
+    <Description>Sequence class, that given min, max and step can calculate, without enumerating, such basic descriptives as sum, length, Variance, Standard Deviation etc. Also, extension methods to generate sequences in GetSequence class.</Description>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/PFalkowski/Sequences</RepositoryUrl>
+    <PackageIconUrl />
+    <PackageProjectUrl>https://github.com/PFalkowski/Sequences</PackageProjectUrl>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageTags>sequence, statistics, netCore, netStandard, range, unittest</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
