@@ -79,14 +79,7 @@ namespace Extensions.Standard.Sequences
             }
             return num;
         }
-
-        /// <summary>
-        ///     Cryptographically strong n of float values.
-        ///     Values constructed using RNGCryptoServiceProvider.
-        /// </summary>
-        /// <param name="rng"></param>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        
         public static float[] RandomFloats(this Random rng, int n)
         {
             var temp = new float[n];
