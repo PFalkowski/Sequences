@@ -65,15 +65,9 @@ namespace Extensions.Standard.Sequences
 
         public Sequence GetIntersection(Sequence other)
         {
-            var min = Math.Max(this.Min, other.Min);
-            var max = Math.Min(this.Max, other.Max);
+            var min = Math.Max(Min, other.Min);
+            var max = Math.Min(Max, other.Max);
             return new Sequence(min, max, Step);
-        }
-
-        private static bool IsSequencePossible(double min, double max, double step, double precision)
-        {
-            var rem = (max - min) % step;
-            return Math.Abs(rem) <= precision;
         }
     }
 }
