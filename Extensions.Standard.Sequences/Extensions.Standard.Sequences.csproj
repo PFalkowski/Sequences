@@ -14,8 +14,8 @@
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageTags>sequence, statistics, netCore, netStandard, range, unittest</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
-    <PackageReleaseNotes>Add Sequence.GetIntersection()</PackageReleaseNotes>
+    <Version>1.2.0</Version>
+    <PackageReleaseNotes>Add Range type, which is a Sequence with step=1</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
