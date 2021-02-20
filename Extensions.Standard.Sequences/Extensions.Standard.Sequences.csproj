@@ -1,21 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Sequence</PackageId>
     <Authors>Piotr Falkowski</Authors>
-    <Copyright>Piotr Falkowski © 2017</Copyright>
+    <Copyright>Piotr Falkowski © 2021</Copyright>
     <Company></Company>
     <Description>The package is intended to help generate various sequences, random and with rules. Provided is Sequence class, that given min, max and step. Calculate, without enumerating, sum, length, Variance, Standard Deviation etc.. Can enumerate lazily all elements. Also, extension methods to System.Random added.</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/PFalkowski/Sequences</RepositoryUrl>
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/PFalkowski/Sequences</PackageProjectUrl>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageTags>sequence, statistics, netCore, netStandard, range, unittest</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
-    <PackageReleaseNotes>Update to .NET Standard 2.0</PackageReleaseNotes>
+    <Version>3.0.0</Version>
+    <PackageReleaseNotes>Update to .NET Standard 2.1. Add ToString override to Sequence.</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

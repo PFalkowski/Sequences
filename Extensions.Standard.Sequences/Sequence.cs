@@ -69,5 +69,10 @@ namespace Extensions.Standard.Sequences
             var max = Math.Min(Max, other.Max);
             return new Sequence(min, max, Step);
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(Min)} = {Min}, {nameof(Max)} = {Max}, {nameof(Step)} = {Step}";
+        }
     }
 }

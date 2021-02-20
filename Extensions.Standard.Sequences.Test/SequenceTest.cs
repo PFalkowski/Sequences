@@ -30,6 +30,7 @@ namespace Extensions.Standard.Sequences.Test
             var actual = tested.GetFullSequence();
             Assert.True(expected.SequenceEqual(actual));
         }
+
         [Fact]
         public void TestLength()
         {
@@ -42,6 +43,7 @@ namespace Extensions.Standard.Sequences.Test
             var actual = tested.Length;
             Assert.Equal(expected, actual);
         }
+
         [Fact]
         public void TestCount()
         {
@@ -79,6 +81,7 @@ namespace Extensions.Standard.Sequences.Test
             }
             return result;
         }
+
         [Fact]
         public void TestSum()
         {
@@ -133,6 +136,7 @@ namespace Extensions.Standard.Sequences.Test
             Assert.Equal(expected, actual);
 
         }
+
         [Fact]
         public void PrcisionIsNotLost()
         {
@@ -145,6 +149,7 @@ namespace Extensions.Standard.Sequences.Test
 
             Assert.Equal(Math.Round(expected, 5), Math.Round(actual, 5));
         }
+
         [Fact]
         public void PrcisionIsNotLost2Test()
         {
@@ -157,6 +162,7 @@ namespace Extensions.Standard.Sequences.Test
 
             Assert.Equal(Math.Round(expected), Math.Round(actual));
         }
+
         [Fact]
         public void TestAverage()
         {
@@ -188,6 +194,7 @@ namespace Extensions.Standard.Sequences.Test
             actual = tested.Average;
             Assert.Equal(expected, actual);
         }
+
         /// <summary>
         /// results compared addittionally to http://www.alcula.com/calculators/statistics/variance/
         /// </summary>
@@ -209,6 +216,7 @@ namespace Extensions.Standard.Sequences.Test
             actual = tested.Variance;
             Assert.Equal(expected, actual);
         }
+
         [Fact]
         public void TestIsWellFormed()
         {
@@ -225,6 +233,7 @@ namespace Extensions.Standard.Sequences.Test
             tested = new Sequence(min, max, step);
             Assert.True(tested.IsWellFormed);
         }
+
         [Fact]
         public void TestIsWellFormed2()
         {
@@ -233,6 +242,7 @@ namespace Extensions.Standard.Sequences.Test
             var step = 1.0;
             Assert.Throws<ArgumentException>(() => new Sequence(min, max, step));
         }
+
         [Fact]
         public void TestContainsNumber()
         {
@@ -256,6 +266,7 @@ namespace Extensions.Standard.Sequences.Test
             tested = new Sequence(number + 2, number + 3, 1);
             Assert.False(tested.Contains(number));
         }
+
         [Fact]
         public void TestContainsSequence()
         {
@@ -263,6 +274,7 @@ namespace Extensions.Standard.Sequences.Test
             var tested = new Sequence(0, 124, 1);
             Assert.True(tested.Contains(number));
         }
+
         [Fact]
         public void IsOverlappingRetuirnsTrueForOverlappingSequences()
         {
@@ -270,6 +282,7 @@ namespace Extensions.Standard.Sequences.Test
             var sequence2 = new Sequence(-100, 129, 1);
             Assert.True(sequence1.IsOverlapping(sequence2));
         }
+
         [Fact]
         public void IsOverlappingRetuirnsTrueForOverlappingSequences2()
         {
@@ -277,6 +290,7 @@ namespace Extensions.Standard.Sequences.Test
             var sequence2 = new Sequence(-10, 129, 1);
             Assert.True(sequence1.IsOverlapping(sequence2));
         }
+
         [Fact]
         public void IsOverlappingRetuirnsTrueForOverlappingSequences3()
         {
@@ -284,6 +298,7 @@ namespace Extensions.Standard.Sequences.Test
             var sequence2 = new Sequence(-10, 10, 1);
             Assert.True(sequence1.IsOverlapping(sequence2));
         }
+
         [Fact]
         public void IsOverlappingRetuirnsTrueForOverlappingSequences4()
         {
@@ -291,6 +306,7 @@ namespace Extensions.Standard.Sequences.Test
             var sequence2 = new Sequence(10, 10, 1);
             Assert.True(sequence1.IsOverlapping(sequence2));
         }
+
         [Fact]
         public void GetIntersectionReturnsIntersection()
         {
@@ -299,6 +315,17 @@ namespace Extensions.Standard.Sequences.Test
             var received = sequence1.GetIntersection(sequence2);
             Assert.Equal(15, received.Max);
             Assert.Equal(1, received.Min);
+        }
+
+        [Fact]
+        public void ToStringReturnsCrucialInfo()
+        {
+            var sequence1 = new Sequence(0, 124, 1);
+            var result = sequence1.ToString();
+
+            Assert.Contains("0", result);
+            Assert.Contains("124", result);
+            Assert.Contains("1", result);
         }
     }
 }
