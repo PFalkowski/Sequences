@@ -2,6 +2,6 @@
 {
     public class Range : Sequence
     {
-        public Range(double min, double max) : base(minInclusive:min, maxInclusive:max, step:1.0) { }
+        public Range(decimal min, decimal max) : base(minInclusive:min, maxInclusive:max, step:1.0m) { }
     }
 }

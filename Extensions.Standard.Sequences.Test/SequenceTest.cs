@@ -10,9 +10,9 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestCtor()
         {
-            var min = 0.0;
-            var max = 10.0;
-            var step = 1.0;
+            var min = 0.0m;
+            var max = 10.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
             Assert.Equal(min, tested.MinInclusive);
             Assert.Equal(max, tested.MaxInclusive);
@@ -22,11 +22,11 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestGetFullSequence()
         {
-            var min = 0.0;
-            var max = 10.0;
-            var step = 1.0;
+            var min = 0.0m;
+            var max = 10.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
-            var expected = new List<double> { 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 };
+            var expected = new List<decimal> { 0.0m, 1.0m, 2.0m, 3.0m, 4.0m, 5.0m, 6.0m, 7.0m, 8.0m, 9.0m, 10.0m };
             var actual = tested.GetFullSequence();
             Assert.True(expected.SequenceEqual(actual));
         }
@@ -34,11 +34,11 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestLength()
         {
-            var min = -5.0;
-            var max = 5.0;
-            var step = 1.0;
+            var min = -5.0m;
+            var max = 5.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
-            var temp = new List<double> { -5, -4, -3, -2, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0 };
+            var temp = new List<decimal> { -5, -4, -3, -2, -1.0m, 0.0m, 1.0m, 2.0m, 3.0m, 4.0m, 5.0m };
             var expected = temp.Count - 1;
             var actual = tested.Length;
             Assert.Equal(expected, actual);
@@ -47,26 +47,26 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestCount()
         {
-            var min = -5.0;
-            var max = 5.0;
-            var step = 1.0;
+            var min = -5.0m;
+            var max = 5.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
-            var temp = new List<double> { -5, -4, -3, -2, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0 };
+            var temp = new List<decimal> { -5, -4, -3, -2, -1.0m, 0.0m, 1.0m, 2.0m, 3.0m, 4.0m, 5.0m };
             var expected = temp.Count;
             var actual = tested.Count;
             Assert.Equal((ulong)expected, actual);
 
-            min = 0.0;
-            max = 0.0;
-            step = 1.0;
+            min = 0.0m;
+            max = 0.0m;
+            step = 1.0m;
             tested = new Sequence(min, max, step);
             expected = 1;
             actual = tested.Count;
             Assert.Equal((ulong)expected, actual);
 
-            min = 1000.0;
-            max = 1000.0;
-            step = 1.0;
+            min = 1000.0m;
+            max = 1000.0m;
+            step = 1.0m;
             tested = new Sequence(min, max, step);
             expected = 1;
             actual = tested.Count;
@@ -79,17 +79,17 @@ namespace Extensions.Standard.Sequences.Test
         [InlineData(-0.001, 0.05, 0.01)]
         [InlineData(-0.2, 0.2, 0.1)]
         [InlineData(-2, 2, 0.1)]
-        public void TestCount2(double minIncl, double maxIncl, double step)
+        public void TestCount2(decimal minIncl, decimal maxIncl, decimal step)
         {
             var tested = new Sequence(minIncl, maxIncl, step);
             var enumeratedSequence = tested.GetFullSequence().ToList();
             Assert.Equal(enumeratedSequence.Count, (int)tested.Count);
         }
 
-        private static double EnumerateAndSumNumbers(double min, double max, double step)
+        private static decimal EnumerateAndSumNumbers(decimal min, decimal max, decimal step)
         {
-            var result = 0.0;
-            for (double i = min; i <= max; i += step)
+            var result = 0.0m;
+            for (decimal i = min; i <= max; i += step)
             {
                 result += i;
             }
@@ -99,35 +99,35 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestSum()
         {
-            var min = 0.0;
-            var max = 10.0;
-            var step = 1.0;
+            var min = 0.0m;
+            var max = 10.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
-            var expected = 55.0;
+            var expected = 55.0m;
             var actual = tested.Sum;
             Assert.Equal(expected, actual);
 
 
-            min = -10.0;
-            max = 0.0;
-            step = 1.0;
+            min = -10.0m;
+            max = 0.0m;
+            step = 1.0m;
             tested = new Sequence(min, max, step);
             expected = -55;
             actual = tested.Sum;
             Assert.Equal(expected, actual);
 
 
-            min = -101.0;
-            max = -100.0;
-            step = 1.0;
+            min = -101.0m;
+            max = -100.0m;
+            step = 1.0m;
             tested = new Sequence(min, max, step);
             expected = -201;
             actual = tested.Sum;
             Assert.Equal(expected, actual);
 
-            min = -20000.0;
-            max = -1000.0;
-            step = 20.0;
+            min = -20000.0m;
+            max = -1000.0m;
+            step = 20.0m;
             tested = new Sequence(min, max, step);
             expected = -9985500;
             actual = tested.Sum;
@@ -135,9 +135,9 @@ namespace Extensions.Standard.Sequences.Test
 
             min = -2;
             max = 2;
-            step = 0.5;
+            step = 0.5m;
             tested = new Sequence(min, max, step);
-            expected = 0.0;
+            expected = 0.0m;
             actual = tested.Sum;
             Assert.Equal(expected, actual);
 
@@ -154,37 +154,37 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void PrcisionIsNotLost()
         {
-            var min = 0.1;
-            var max = 0.2;
-            var step = 0.01;
+            var min = 0.1m;
+            var max = 0.2m;
+            var step = 0.01m;
             var tested = new Sequence(min, max, step);
-            var expected = 1.65;
+            var expected = 1.65m;
             var actual = tested.Sum;
 
-            Assert.Equal(Math.Round(expected, 5), Math.Round(actual, 5));
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void PrcisionIsNotLost2Test()
         {
-            var min = 0.0;
-            var max = 10000000;
-            var step = 0.1;
+            var min = 0.0m;
+            var max = 10000000m;
+            var step = 0.1m;
             var tested = new Sequence(min, max, step);
-            var expected = 500000005000000.0;
+            var expected = 500000005000000.0m;
             var actual = tested.Sum;
-
-            Assert.Equal(Math.Round(expected), Math.Round(actual));
+            
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void TestAverage()
         {
-            var min = 0.0;
-            var max = 10.0;
-            var step = 1.0;
+            var min = 0.0m;
+            var max = 10.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
-            var temp = new List<double> { 0.0, 1.0, 2, 3, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 };
+            var temp = new List<decimal> { 0.0m, 1.0m, 2, 3, 4.0m, 5.0m, 6.0m, 7.0m, 8.0m, 9.0m, 10.0m };
             var expected = temp.Average();
             var actual = tested.Average;
             Assert.Equal(expected, actual);
@@ -194,7 +194,7 @@ namespace Extensions.Standard.Sequences.Test
             max = -9;
             step = 1;
             tested = new Sequence(min, max, step);
-            temp = new List<double> { -10, -9 };
+            temp = new List<decimal> { -10, -9 };
             expected = temp.Average();
             actual = tested.Average;
             Assert.Equal(expected, actual);
@@ -203,7 +203,7 @@ namespace Extensions.Standard.Sequences.Test
             max = 100;
             step = 100;
             tested = new Sequence(min, max, step);
-            temp = new List<double> { -100, 0, 100 };
+            temp = new List<decimal> { -100, 0, 100 };
             expected = temp.Average();
             actual = tested.Average;
             Assert.Equal(expected, actual);
@@ -215,17 +215,17 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestVariance()
         {
-            var min = 0.0;
-            var max = 10.0;
-            var step = 1.0;
+            var min = 0.0m;
+            var max = 10.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
             var actual = tested.Variance;
             var expected = 10;
             Assert.Equal(expected, actual);
 
-            min = -10.0;
-            max = -0.0;
-            step = 1.0;
+            min = -10.0m;
+            max = -0.0m;
+            step = 1.0m;
             tested = new Sequence(min, max, step);
             actual = tested.Variance;
             Assert.Equal(expected, actual);
@@ -234,16 +234,16 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestIsWellFormed()
         {
-            var min = -0.0;
-            var max = 111111211.0;
-            var step = 1.0;
+            var min = -0.0m;
+            var max = 111111211.0m;
+            var step = 1.0m;
             var tested = new Sequence(min, max, step);
             Assert.True(tested.IsWellFormed);
 
 
-            min = -123123.0;
+            min = -123123.0m;
             max = -32;
-            step = 1.0;
+            step = 1.0m;
             tested = new Sequence(min, max, step);
             Assert.True(tested.IsWellFormed);
         }
@@ -253,14 +253,14 @@ namespace Extensions.Standard.Sequences.Test
         {
             var min = 4;
             var max = 3;
-            var step = 1.0;
+            var step = 1.0m;
             Assert.Throws<ArgumentException>(() => new Sequence(min, max, step));
         }
 
         [Fact]
         public void TestContainsNumber()
         {
-            double number = 10;
+            decimal number = 10;
             var tested = new Sequence(0, 15, 1);
             Assert.True(tested.Contains(number));
 
@@ -268,15 +268,15 @@ namespace Extensions.Standard.Sequences.Test
             tested = new Sequence(0, number, 3);
             Assert.True(tested.Contains(number));
 
-            number = 0.3;
+            number = 0.3m;
             tested = new Sequence(0, 3, 1);
             Assert.True(tested.Contains(number));
 
-            number = 0.0;
+            number = 0.0m;
             tested = new Sequence(number, number, 1);
             Assert.True(tested.Contains(number));
 
-            number = -200.0;
+            number = -200.0m;
             tested = new Sequence(number + 2, number + 3, 1);
             Assert.False(tested.Contains(number));
         }
@@ -284,7 +284,7 @@ namespace Extensions.Standard.Sequences.Test
         [Fact]
         public void TestContainsSequence()
         {
-            var number = 123.912;
+            var number = 123.912m;
             var tested = new Sequence(0, 124, 1);
             Assert.True(tested.Contains(number));
         }

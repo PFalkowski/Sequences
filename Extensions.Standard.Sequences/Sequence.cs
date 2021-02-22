@@ -8,7 +8,7 @@ namespace Extensions.Standard.Sequences
         /// <summary>
         /// Ordered set of elements &lt;<paramref name="minInclusive"/>..<paramref name="maxInclusive"/>) by <paramref name="step"/>
         /// </summary>
-        public Sequence(double minInclusive, double maxInclusive, double step)
+        public Sequence(decimal minInclusive, decimal maxInclusive, decimal step)
         {
             MinInclusive = minInclusive;
             MaxInclusive = maxInclusive;
@@ -16,27 +16,27 @@ namespace Extensions.Standard.Sequences
             if (!IsWellFormed) throw new ArgumentException(nameof(maxInclusive));
         }
 
-        public double MinInclusive { get; }
-        public double MaxInclusive { get; }
-        public double Step { get; }
+        public decimal MinInclusive { get; }
+        public decimal MaxInclusive { get; }
+        public decimal Step { get; }
         public bool IsWellFormed => MinInclusive <= MaxInclusive;
         /// <summary>
         /// Length of the range
         /// https://people.richland.edu/james/lecture/m170/ch03-var.html
         /// </summary>
-        public double Length => MaxInclusive - MinInclusive;
+        public decimal Length => MaxInclusive - MinInclusive;
         /// <summary>
         /// Number of elements in the range
         /// </summary>
         public ulong Count => 1 + (ulong)Math.Abs(Length / Step);
-        public double Average => (MaxInclusive - (MinInclusive < 0 ? -MinInclusive : MinInclusive)) / 2;
+        public decimal Average => (MaxInclusive - (MinInclusive < 0 ? -MinInclusive : MinInclusive)) / 2;
 
-        public double Sum => Count * (2 * MinInclusive + (Count - 1) * Step) / 2;
-        public double Variance => Math.Pow(MaxInclusive - MinInclusive, 2) / Math.Abs(Length);
+        public decimal Sum => Count * (2 * MinInclusive + (Count - 1) * Step) / 2;
+        public double Variance => Math.Pow((double)MaxInclusive - (double)MinInclusive, 2) / (double)Math.Abs(Length);
 
         public double StandardDeviation => Math.Sqrt(Variance);
 
-        public IEnumerable<double> GetFullSequence()
+        public IEnumerable<decimal> GetFullSequence()
         {
             var currentValue = MinInclusive;
             while (currentValue <= MaxInclusive)
@@ -45,7 +45,7 @@ namespace Extensions.Standard.Sequences
                 currentValue += Step;
             }
         }
-        public bool Contains(double x)
+        public bool Contains(decimal x)
         {
             return x <= MaxInclusive && x >= MinInclusive;
         }

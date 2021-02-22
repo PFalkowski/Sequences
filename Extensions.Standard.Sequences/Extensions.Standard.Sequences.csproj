@@ -14,8 +14,8 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageTags>sequence, statistics, netCore, netStandard, range, unittest</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>3.0.0</Version>
-    <PackageReleaseNotes>Update to .NET Standard 2.1. Add ToString override to Sequence.</PackageReleaseNotes>
+    <Version>4.0.0</Version>
+    <PackageReleaseNotes>Sequence is now decimal based. No more annoying rounding errors causing other bugs.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
