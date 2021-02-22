@@ -14,8 +14,8 @@ namespace Extensions.Standard.Sequences.Test
             var max = 10.0;
             var step = 1.0;
             var tested = new Sequence(min, max, step);
-            Assert.Equal(min, tested.Min);
-            Assert.Equal(max, tested.Max);
+            Assert.Equal(min, tested.MinInclusive);
+            Assert.Equal(max, tested.MaxInclusive);
             Assert.Equal(step, tested.Step);
         }
 
@@ -72,6 +72,20 @@ namespace Extensions.Standard.Sequences.Test
             actual = tested.Count;
             Assert.Equal((ulong)expected, actual);
         }
+
+        [Theory]
+        [InlineData(-0.02, 0.02, 0.01)]
+        [InlineData(-0.002, 0.02, 0.01)]
+        [InlineData(-0.001, 0.05, 0.01)]
+        [InlineData(-0.2, 0.2, 0.1)]
+        [InlineData(-2, 2, 0.1)]
+        public void TestCount2(double minIncl, double maxIncl, double step)
+        {
+            var tested = new Sequence(minIncl, maxIncl, step);
+            var enumeratedSequence = tested.GetFullSequence().ToList();
+            Assert.Equal(enumeratedSequence.Count, (int)tested.Count);
+        }
+
         private static double EnumerateAndSumNumbers(double min, double max, double step)
         {
             var result = 0.0;
@@ -313,8 +327,8 @@ namespace Extensions.Standard.Sequences.Test
             var sequence1 = new Sequence(0, 124, 1);
             var sequence2 = new Sequence(1, 15, 1);
             var received = sequence1.GetIntersection(sequence2);
-            Assert.Equal(15, received.Max);
-            Assert.Equal(1, received.Min);
+            Assert.Equal(15, received.MaxInclusive);
+            Assert.Equal(1, received.MinInclusive);
         }
 
         [Fact]
