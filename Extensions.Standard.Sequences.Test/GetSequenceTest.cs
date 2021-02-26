@@ -23,6 +23,7 @@ namespace Extensions.Standard.Sequences.Test
             Assert.Equal(100, result3.Length);
             Assert.Equal(1000, result4.Length);
         }
+
         [Fact]
         public void RandomStringTestCharacters()
         {
@@ -35,6 +36,7 @@ namespace Extensions.Standard.Sequences.Test
                 Assert.True(ch >= firstInclusive && ch < lastExclusive);
             }
         }
+
         [Fact]
         public void RandomStringTestCharacters2()
         {
@@ -47,6 +49,7 @@ namespace Extensions.Standard.Sequences.Test
                 Assert.True(ch >= firstInclusive && ch < lastExclusive);
             }
         }
+
         [Fact]
         public void RandomStringTestLength2()
         {
@@ -63,6 +66,7 @@ namespace Extensions.Standard.Sequences.Test
             Assert.True(result3.Length >= 100 && result3.Length < 200);
             Assert.True(result4.Length >= 1000 && result4.Length < 2000);
         }
+
         [Fact]
         public void RandomStringTestCharacters3()
         {
@@ -216,6 +220,7 @@ namespace Extensions.Standard.Sequences.Test
 
             var received = tested.Average();
         }
+
         [Fact]
         public void OccupyMemorytest()
         {
