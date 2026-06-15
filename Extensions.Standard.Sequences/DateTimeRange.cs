@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Extensions.Standard.Sequences
 {
@@ -34,7 +35,8 @@ namespace Extensions.Standard.Sequences
 
         public override string ToString()
         {
-            return $"{nameof(MinInclusive)} = {MinInclusive}, {nameof(MaxInclusive)} = {MaxInclusive}, {nameof(Step)} = {Step}";
+            var ic = CultureInfo.InvariantCulture;
+            return $"{nameof(MinInclusive)} = {MinInclusive.ToString(ic)}, {nameof(MaxInclusive)} = {MaxInclusive.ToString(ic)}, {nameof(Step)} = {Step}";
         }
     }
 }

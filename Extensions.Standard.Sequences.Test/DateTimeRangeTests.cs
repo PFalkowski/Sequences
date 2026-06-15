@@ -50,7 +50,7 @@ namespace Extensions.Standard.Sequences.Test
             var tested = new DateTimeRange(minIncl, maxIncl, step);
             var enumeratedSequence = tested.GetFullSequence().ToList();
             Assert.Equal(enumeratedSequence.Count, (int)tested.Count);
-            Assert.Equal("MinInclusive = 01.01.2011 00:00:00, MaxInclusive = 01.01.2021 00:00:00, Step = 30.00:00:00", tested.ToString());
+            Assert.Equal("MinInclusive = 01/01/2011 00:00:00, MaxInclusive = 01/01/2021 00:00:00, Step = 30.00:00:00", tested.ToString());
         }
     }
 }
