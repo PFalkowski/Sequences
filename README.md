@@ -1,4 +1,4 @@
-# Sequence
+﻿# Sequence
 
 [![CI](https://github.com/PFalkowski/Sequences/actions/workflows/ci.yml/badge.svg)](https://github.com/PFalkowski/Sequences/actions/workflows/ci.yml)
 [![NuGet version](https://img.shields.io/nuget/v/Sequence.svg)](https://www.nuget.org/packages/Sequence/)
@@ -9,6 +9,12 @@
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow.svg)](https://www.buymeacoffee.com/piotrfalkowski)
 
 Generate and analyze numeric and datetime sequences. `Sequence` computes sum, count, variance, and standard deviation analytically (no enumeration) given `min`, `max`, and `step`. Also provides `Random`/`IEnumerable<T>` extension methods for generating random sequences.
+
+## Install
+
+```bash
+dotnet add package Sequence
+```
 
 ## Sequence (arithmetic range)
 
