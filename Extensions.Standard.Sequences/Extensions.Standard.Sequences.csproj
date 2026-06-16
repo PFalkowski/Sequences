@@ -1,25 +1,31 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageId>Sequence</PackageId>
+    <Version>4.2.0</Version>
     <Authors>Piotr Falkowski</Authors>
-    <Copyright>Piotr Falkowski © 2021</Copyright>
-    <Company></Company>
+    <Company>Piotr Falkowski</Company>
     <Description>The package is intended to help generate various sequences, random and with rules. Provided is Sequence class, that given min, max and step. Calculate, without enumerating, sum, length, Variance, Standard Deviation etc.. Can enumerate lazily all elements. Also, extension methods to System.Random added.</Description>
+    <Copyright>Piotr Falkowski © 2026</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/PFalkowski/Sequences</RepositoryUrl>
-    <PackageIconUrl />
     <PackageProjectUrl>https://github.com/PFalkowski/Sequences</PackageProjectUrl>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageTags>sequence, statistics, netCore, netStandard, range, unittest</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>4.1.0</Version>
-    <PackageReleaseNotes>Add DateTimeRange</PackageReleaseNotes>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>sequence, statistics, netCore, range</PackageTags>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="StrongRandom" Version="2.0.0" />
   </ItemGroup>
 
