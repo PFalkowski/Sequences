@@ -64,8 +64,9 @@ namespace Extensions.Standard.Sequences
                 return Contains(x.MinInclusive) || Contains(x.MaxInclusive) || x.Contains(MinInclusive) || x.Contains(MaxInclusive);
         }
 
-        public Sequence GetIntersection(Sequence other)
+        public Sequence? GetIntersection(Sequence other)
         {
+            if (!IsOverlapping(other)) return null;
             var min = Math.Max(MinInclusive, other.MinInclusive);
             var max = Math.Min(MaxInclusive, other.MaxInclusive);
             return new Sequence(min, max, Step);

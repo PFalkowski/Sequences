@@ -344,8 +344,17 @@ namespace Extensions.Standard.Sequences.Test
             var sequence1 = new Sequence(0, 124, 1);
             var sequence2 = new Sequence(1, 15, 1);
             var received = sequence1.GetIntersection(sequence2);
+            Assert.NotNull(received);
             Assert.Equal(15, received.MaxInclusive);
             Assert.Equal(1, received.MinInclusive);
+        }
+
+        [Fact]
+        public void GetIntersectionReturnsNullForNonOverlapping()
+        {
+            var sequence1 = new Sequence(0, 5, 1);
+            var sequence2 = new Sequence(10, 20, 1);
+            Assert.Null(sequence1.GetIntersection(sequence2));
         }
 
         [Fact]
