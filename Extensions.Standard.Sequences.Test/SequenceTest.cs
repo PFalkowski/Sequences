@@ -207,6 +207,15 @@ namespace Extensions.Standard.Sequences.Test
             expected = temp.Average();
             actual = tested.Average;
             Assert.Equal(expected, actual);
+
+            min = 1;
+            max = 5;
+            step = 1;
+            tested = new Sequence(min, max, step);
+            temp = new List<decimal> { 1, 2, 3, 4, 5 };
+            expected = temp.Average();
+            actual = tested.Average;
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>

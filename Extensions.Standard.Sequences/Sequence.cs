@@ -29,7 +29,7 @@ namespace Extensions.Standard.Sequences
         /// Number of elements in the range
         /// </summary>
         public ulong Count => 1 + (ulong)Math.Abs(Length / Step);
-        public decimal Average => (MaxInclusive - (MinInclusive < 0 ? -MinInclusive : MinInclusive)) / 2;
+        public decimal Average => (MinInclusive + MaxInclusive) / 2;
 
         public decimal Sum => Count * (2 * MinInclusive + (Count - 1) * Step) / 2;
         public double Variance => Math.Pow((double)MaxInclusive - (double)MinInclusive, 2) / (double)Math.Abs(Length);
