@@ -21,7 +21,7 @@ namespace Extensions.Standard.Sequences
 
         public TimeSpan Length => MaxInclusive - MinInclusive;
 
-        public ulong Count => 1 + (ulong)Math.Abs(Length / Step);
+        public ulong Count => 1 + (ulong)Math.Abs((double)Length.Ticks / Step.Ticks);
 
         public IEnumerable<DateTime> GetFullSequence()
         {
