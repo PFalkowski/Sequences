@@ -7,8 +7,8 @@ namespace Extensions.Standard.Sequences
     public class DateTimeRange
     {
         public DateTime MinInclusive { get; }
-        private DateTime MaxInclusive { get; }
-        private TimeSpan Step { get; }
+        public DateTime MaxInclusive { get; }
+        public TimeSpan Step { get; }
 
         public DateTimeRange(DateTime fromInclusive, DateTime toInclusive, TimeSpan step)
         {

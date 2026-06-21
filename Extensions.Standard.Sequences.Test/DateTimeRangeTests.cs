@@ -9,6 +9,18 @@ namespace Extensions.Standard.Sequences.Test
     public class DateTimeRangeTests
     {
         [Fact]
+        public void PropertiesAreReadable()
+        {
+            var from = new DateTime(2020, 1, 1);
+            var to = new DateTime(2021, 1, 1);
+            var step = TimeSpan.FromDays(30);
+            var range = new DateTimeRange(from, to, step);
+            Assert.Equal(from, range.MinInclusive);
+            Assert.Equal(to, range.MaxInclusive);
+            Assert.Equal(step, range.Step);
+        }
+
+        [Fact]
         public void TestOneYear()
         {
             DateTime minIncl = new DateTime(2020, 01, 01);
