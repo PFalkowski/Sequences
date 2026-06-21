@@ -14,6 +14,7 @@ namespace Extensions.Standard.Sequences
             MaxInclusive = maxInclusive;
             Step = step;
             if (!IsWellFormed) throw new ArgumentException(nameof(maxInclusive));
+            if (step <= 0) throw new ArgumentOutOfRangeException(nameof(step), "Step must be positive.");
         }
 
         public decimal MinInclusive { get; }

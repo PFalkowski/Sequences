@@ -266,6 +266,14 @@ namespace Extensions.Standard.Sequences.Test
             Assert.Throws<ArgumentException>(() => new Sequence(min, max, step));
         }
 
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void ConstructorThrowsOnNonPositiveStep(decimal step)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Sequence(0, 10, step));
+        }
+
         [Fact]
         public void TestContainsNumber()
         {
