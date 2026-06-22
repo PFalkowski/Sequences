@@ -241,6 +241,36 @@ namespace Extensions.Standard.Sequences.Test
         }
 
         [Fact]
+        public void VarianceIsCorrectForNonUnitStep()
+        {
+            // [0,10,step=2] → elements 0,2,4,6,8,10, mean=5
+            // population variance = (25+9+1+1+9+25)/6 = 70/6 ≈ 11.6̄
+            // formula: step²×(n²−1)/12 = 4×(36−1)/12 = 140/12
+            var tested = new Sequence(0, 10, 2);
+            var expected = 4.0 * (36.0 - 1.0) / 12.0;
+            Assert.Equal(expected, tested.Variance, precision: 10);
+            // also confirm via brute-force enumeration
+            var elements = tested.GetFullSequence().Select(x => (double)x).ToList();
+            var mean = elements.Average();
+            var bruteForce = elements.Average(x => Math.Pow(x - mean, 2));
+            Assert.Equal(bruteForce, tested.Variance, precision: 10);
+        }
+
+#pragma warning disable CS0618
+        [Fact]
+        public void DeprecatedRangeVariancePinsOldBehavior()
+        {
+            // The old Variance returned MaxInclusive − MinInclusive (the range).
+            // This shim preserves that value so existing callers can migrate.
+            var tested = new Sequence(0, 10, 1);
+            Assert.Equal(10.0, tested.DeprecatedRangeVariance);
+
+            tested = new Sequence(0, 10, 2);
+            Assert.Equal(10.0, tested.DeprecatedRangeVariance);  // same range, different step — proves it's range-only
+        }
+#pragma warning restore CS0618
+
+        [Fact]
         public void TestIsWellFormed()
         {
             var min = -0.0m;

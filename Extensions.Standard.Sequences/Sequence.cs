@@ -33,9 +33,14 @@ namespace Extensions.Standard.Sequences
         public decimal Average => (MinInclusive + MaxInclusive) / 2;
 
         public decimal Sum => Count * (2 * MinInclusive + (Count - 1) * Step) / 2;
-        public double Variance => Math.Pow((double)MaxInclusive - (double)MinInclusive, 2) / (double)Math.Abs(Length);
+        public double Variance => Math.Pow((double)Step, 2) * ((double)Count * (double)Count - 1) / 12.0;
 
         public double StandardDeviation => Math.Sqrt(Variance);
+
+        [Obsolete("Variance now returns the correct population variance (step² × (n²−1) / 12). " +
+                  "The previous implementation returned MaxInclusive − MinInclusive (the range). " +
+                  "If you need the old value, use (double)(MaxInclusive - MinInclusive) directly.")]
+        public double DeprecatedRangeVariance => (double)(MaxInclusive - MinInclusive);
 
         public IEnumerable<decimal> GetFullSequence()
         {
