@@ -397,5 +397,56 @@ namespace Extensions.Standard.Sequences.Test
             Assert.Contains("124", result);
             Assert.Contains("1", result);
         }
+
+        /// <summary>
+        /// Every analytic property must agree with brute-force enumeration of the
+        /// actual elements, across non-trivial ranges: unaligned bounds (where the
+        /// last element is below MaxInclusive), negative ranges, ranges spanning
+        /// zero, fractional steps, and a single-element range.
+        /// decimal InlineData isn't allowed, so bounds are passed as doubles.
+        /// </summary>
+        [Theory]
+        [InlineData(1, 5, 1)]        // aligned baseline
+        [InlineData(0, 10, 3)]       // unaligned positive: {0,3,6,9}, last element 9 < 10
+        [InlineData(0, 100, 7)]      // unaligned positive: last element 98 < 100
+        [InlineData(-7, 7, 3)]       // unaligned, spans zero: {-7,-4,-1,2,5}
+        [InlineData(-10, -1, 2)]     // unaligned, all negative: {-10,-8,-6,-4,-2}
+        [InlineData(-10, -2, 2)]     // aligned, all negative
+        [InlineData(5, 5, 1)]        // single element: variance/stddev must be 0
+        [InlineData(0, 1, 0.3)]      // fractional step, unaligned: {0,0.3,0.6,0.9}
+        [InlineData(0, 1, 0.1)]      // fractional step, aligned: 11 elements
+        public void AnalyticPropertiesMatchBruteForceEnumeration(double minD, double maxD, double stepD)
+        {
+            var tested = new Sequence((decimal)minD, (decimal)maxD, (decimal)stepD);
+
+            var elements = tested.GetFullSequence().ToList();
+            var doubles = elements.Select(x => (double)x).ToList();
+            var mean = doubles.Average();
+            var bruteVariance = doubles.Average(x => Math.Pow(x - mean, 2));
+
+            Assert.Equal((ulong)elements.Count, tested.Count);
+            Assert.Equal(elements.Sum(), tested.Sum, precision: 10);
+            Assert.Equal(elements.Average(), tested.Average, precision: 10);
+            Assert.Equal(bruteVariance, tested.Variance, precision: 10);
+            Assert.Equal(Math.Sqrt(bruteVariance), tested.StandardDeviation, precision: 10);
+        }
+
+        [Fact]
+        public void AverageMatchesElementMeanForUnalignedRange()
+        {
+            // Regression for the old midpoint formula: {0,3,6,9} has mean 4.5,
+            // not (0 + 10) / 2 = 5.
+            var tested = new Sequence(0, 10, 3);
+            Assert.Equal(4.5m, tested.Average);
+        }
+
+        [Fact]
+        public void SingleElementSequenceHasZeroVariance()
+        {
+            var tested = new Sequence(5, 5, 1);
+            Assert.Equal(0.0, tested.Variance, precision: 10);
+            Assert.Equal(0.0, tested.StandardDeviation, precision: 10);
+            Assert.Equal(5m, tested.Average);
+        }
     }
 }

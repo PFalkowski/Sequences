@@ -30,7 +30,11 @@ namespace Extensions.Standard.Sequences
         /// Number of elements in the range
         /// </summary>
         public ulong Count => 1 + (ulong)Math.Abs(Length / Step);
-        public decimal Average => (MinInclusive + MaxInclusive) / 2;
+        // Mean of the actual elements, which equals Sum / Count. For ranges where
+        // (Max - Min) is not a whole multiple of Step the last element is below
+        // MaxInclusive, so (Min + Max) / 2 would be wrong; this stays consistent
+        // with Sum, Count and Variance.
+        public decimal Average => MinInclusive + (Count - 1) * Step / 2;
 
         public decimal Sum => Count * (2 * MinInclusive + (Count - 1) * Step) / 2;
         public double Variance => Math.Pow((double)Step, 2) * ((double)Count * (double)Count - 1) / 12.0;
