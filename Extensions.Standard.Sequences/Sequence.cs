@@ -14,6 +14,7 @@ namespace Extensions.Standard.Sequences
             MaxInclusive = maxInclusive;
             Step = step;
             if (!IsWellFormed) throw new ArgumentException(nameof(maxInclusive));
+            if (step <= 0) throw new ArgumentOutOfRangeException(nameof(step), "Step must be positive.");
         }
 
         public decimal MinInclusive { get; }
@@ -29,12 +30,21 @@ namespace Extensions.Standard.Sequences
         /// Number of elements in the range
         /// </summary>
         public ulong Count => 1 + (ulong)Math.Abs(Length / Step);
-        public decimal Average => (MaxInclusive - (MinInclusive < 0 ? -MinInclusive : MinInclusive)) / 2;
+        // Mean of the actual elements, which equals Sum / Count. For ranges where
+        // (Max - Min) is not a whole multiple of Step the last element is below
+        // MaxInclusive, so (Min + Max) / 2 would be wrong; this stays consistent
+        // with Sum, Count and Variance.
+        public decimal Average => MinInclusive + (Count - 1) * Step / 2;
 
         public decimal Sum => Count * (2 * MinInclusive + (Count - 1) * Step) / 2;
-        public double Variance => Math.Pow((double)MaxInclusive - (double)MinInclusive, 2) / (double)Math.Abs(Length);
+        public double Variance => Math.Pow((double)Step, 2) * ((double)Count * (double)Count - 1) / 12.0;
 
         public double StandardDeviation => Math.Sqrt(Variance);
+
+        [Obsolete("Variance now returns the correct population variance (step² × (n²−1) / 12). " +
+                  "The previous implementation returned MaxInclusive − MinInclusive (the range). " +
+                  "If you need the old value, use (double)(MaxInclusive - MinInclusive) directly.")]
+        public double DeprecatedRangeVariance => (double)(MaxInclusive - MinInclusive);
 
         public IEnumerable<decimal> GetFullSequence()
         {
@@ -63,8 +73,9 @@ namespace Extensions.Standard.Sequences
                 return Contains(x.MinInclusive) || Contains(x.MaxInclusive) || x.Contains(MinInclusive) || x.Contains(MaxInclusive);
         }
 
-        public Sequence GetIntersection(Sequence other)
+        public Sequence? GetIntersection(Sequence other)
         {
+            if (!IsOverlapping(other)) return null;
             var min = Math.Max(MinInclusive, other.MinInclusive);
             var max = Math.Min(MaxInclusive, other.MaxInclusive);
             return new Sequence(min, max, Step);

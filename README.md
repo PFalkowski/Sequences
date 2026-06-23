@@ -7,6 +7,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=PFalkowski_Sequences&metric=coverage)](https://sonarcloud.io/summary/new_code?id=PFalkowski_Sequences)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow.svg)](https://www.buymeacoffee.com/piotrfalkowski)
+[![Refreshed by refresh-nuget-repo](https://img.shields.io/badge/refreshed%20by-refresh--nuget--repo-blue.svg)](https://www.buymeacoffee.com/piotrfalkowski)
 
 Generate and analyze numeric and datetime sequences. `Sequence` computes sum, count, variance, and standard deviation analytically (no enumeration) given `min`, `max`, and `step`. Also provides `Random`/`IEnumerable<T>` extension methods for generating random sequences.
 
@@ -40,6 +41,23 @@ var range = new DateTimeRange(
 
 foreach (var date in range.GetFullSequence())
     Console.WriteLine(date);
+```
+
+## Set operations
+
+```csharp
+var a = new Sequence(0, 10, 1);
+var b = new Sequence(5, 20, 1);
+
+bool overlaps    = a.IsOverlapping(b);          // true
+bool contains    = a.Contains(7m);              // true
+Sequence? inter  = a.GetIntersection(b);        // [5..10], or null if no overlap
+```
+
+`Range` is a convenience subclass with `step = 1`:
+
+```csharp
+var r = new Range(0, 100);   // same as new Sequence(0, 100, 1)
 ```
 
 ## Random sequence helpers

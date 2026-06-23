@@ -7,8 +7,8 @@ namespace Extensions.Standard.Sequences
     public class DateTimeRange
     {
         public DateTime MinInclusive { get; }
-        private DateTime MaxInclusive { get; }
-        private TimeSpan Step { get; }
+        public DateTime MaxInclusive { get; }
+        public TimeSpan Step { get; }
 
         public DateTimeRange(DateTime fromInclusive, DateTime toInclusive, TimeSpan step)
         {
@@ -21,7 +21,7 @@ namespace Extensions.Standard.Sequences
 
         public TimeSpan Length => MaxInclusive - MinInclusive;
 
-        public ulong Count => 1 + (ulong)Math.Abs(Length / Step);
+        public ulong Count => 1 + (ulong)Math.Abs((double)Length.Ticks / Step.Ticks);
 
         public IEnumerable<DateTime> GetFullSequence()
         {

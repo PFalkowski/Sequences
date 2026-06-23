@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
     <PackageId>Sequence</PackageId>
-    <Version>4.2.0</Version>
+    <Version>5.0.0</Version>
     <Authors>Piotr Falkowski</Authors>
     <Company>Piotr Falkowski</Company>
     <Description>The package is intended to help generate various sequences, random and with rules. Provided is Sequence class, that given min, max and step. Calculate, without enumerating, sum, length, Variance, Standard Deviation etc.. Can enumerate lazily all elements. Also, extension methods to System.Random added.</Description>
@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="StrongRandom" Version="2.0.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.300" PrivateAssets="All" />
+    <PackageReference Include="StrongRandom" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
